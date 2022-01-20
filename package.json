@@ -1,0 +1,64 @@
+{
+  "name": "fulljs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server/server.js",
+  "scripts": {
+    "verify-tests": "jest --coverage",
+    "test": "jest --watchAll",
+    "dev:server": "NODE_PATH=./src nodemon --exec babel-node src/server/server.js --ignore dist/",
+    "dev:server-npm": "NODE_PATH=./src pm2 start src/server/server.js --watch --interpreter babel-node --name appDev",
+    "dev:bundler": "webpack --watch --mode=development",
+    "build-webpack": "webpack",
+    "build-node": "babel src -d build --copy-files",
+    "start-prod": "NODE_ENV=production NODE_PATH=./build pm2 start build/server/server.js -i max --name appProd"
+  },
+  "@babel": {
+    "presets": [
+      "react",
+      "env",
+      "stage-2"
+    ]
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "keywords": [],
+  "author": "Jo Jo",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-stage-2": "^7.8.3",
+    "axios": "^0.24.0",
+    "babel-loader": "^8.2.3",
+    "core-js": "^3.19.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "lodash.debounce": "^4.0.8",
+    "lodash.pickby": "^4.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.9",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
+    "babel-jest": "^27.4.2",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
+    "eslint": "^8.4.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.4.4",
+    "nodemon": "^2.0.15",
+    "react-test-renderer": "^17.0.2"
+  }
+}
